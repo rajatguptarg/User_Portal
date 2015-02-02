@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            User Console
+        </title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body align=center>
+        <div class="row">
+            <div class="col-md-3">
+                <legend><h1>Hola, <strong>{{ data.name }}</strong></h1></legend>
+            </div>
+            <div class="col-md-7"><br><br><legend>&nbsp;</legend></div>
+            <div class="col-md-2"><br>
+                <button type="button" class="btn btn-primary" onclick="location.href='http://127.0.0.1:5000/settings/{{ data.user }}'">Change Settings</button><br><br>
+            </div>
+        </div>
+        <p>Your details are:</p><br>
+        <p>User Name: <strong>{{ data.user }}</strong></p><br>
+        <p>Password: <strong>{{ data.password }}</strong></p><br>
+        <p>Role: <strong>{{ data.role }}</strong></p><br>
+        <p>Gender: <strong>{{ data.gender }}</strong></p><br>
+    </body>
+</html>

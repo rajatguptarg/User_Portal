@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            Settings
+        </title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body align=center>
+        <div class="row">
+            <div class="col-md-2"><legend><h1>Settings</h1></legend></div>
+            <div class="col-md-8"></div>
+            <div class="col-md-2"></div>
+        </div>
+        <br>
+        <p><strong>NOTE: User Name can not be modified.</strong></p>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <form class="form-horizontal" action="http://127.0.0.1:5000/update" method="post">
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="name">NAME</label>
+                        <div class="col-xs-7">
+                            <input type="text" class="form-control" name="name" placeholder="Enter your Name">
+                        </div>
+                    </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-3" for="name">USER NAME</label>
+                            <div class="col-xs-7">
+                                <input type="text" class="form-control" name="uname" placeholder={{ user }}>
+                            </div>
+                        </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="pwd">PASSWORD</label>
+                        <div class="col-xs-7">
+                            <input type="password" class="form-control" name="pwd" placeholder="Enter your password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3">GENDER</label>
+                        <div class="col-xs-2">
+                            <label class="radio-inline">
+                                <input type="radio" name="gender" value="male"> Male
+                            </label>
+                        </div>
+                        <div class="col-xs-2">
+                            <label class="radio-inline">
+                                <input type="radio" name="gender" value="female"> Female
+                            </label>
+                        </div>
+                        <div class="col-xs-3">
+                            <label class="radio-inline">
+                                <input type="radio" name="gender" value="other"> Other
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3">ROLE</label>
+                        <div class="col-xs-5">
+                            <select class="form-control" name="role">
+                                <option>Administrator</option>
+                                <option>Basic User</option>
+                                <option>Premium User</option>
+                                <option>Guest User</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-offset-4 col-xs-8">
+                            <input type="submit" class="btn btn-success" value="Submit">
+                            <input type="reset" class="btn btn-danger" value="Reset">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-4"></div></div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            Admin Console
+        </title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body align=center>
+        <div class="row">
+            <div class="col-md-3">
+                <legend><h1>Hola, <strong>{{ data.name }}</strong></h1></legend>
+            </div>
+            <div class="col-md-7"><br><br><legend>&nbsp;</legend></div>
+            <div class="col-md-2"><br>
+                <button type="button" class="btn btn-primary" onclick="location.href='http://127.0.0.1:5000/settings/{{ data.user }}'">Change Settings</button><br><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-2">
+                <p align=left> <legend>Your details are:</legend></p>
+                <p align=left> User Name: <strong>{{ data.user }}</strong></p>
+                <p align=left> Password: <strong>{{ data.password }}</strong></p>
+                <p align=left> Role: <strong>{{ data.role }}</strong></p>
+                <p align=left> Gender: <strong>{{ data.gender }}</strong></p><br>
+            </div>
+            <div class="col-md-9"></div>
+        </div>
+        <p><legend>User Log:</legend></p>
+        <br><br>
+        <table border=1 align="center">
+            <tr>
+                <th>Name</th>
+                <th>User Name</th>
+                <th>Password</th>
+                <th>Gender</th>
+                <th>Role</th>
+            </tr>
+            {% for user in res.items() %}
+            <tr>
+                <td>{{ user[1]['name'] }}</td>
+                <td>{{ user[0] }}</td>
+                <td>{{ user[1]['password'] }}</td>
+                <td>{{ user[1]['gender'] }}</td>
+                <td>{{ user[1]['role'] }}</td>
+            </tr>
+            {% endfor %}
+            <br>
+        </table>
+    </body>
+</html>
