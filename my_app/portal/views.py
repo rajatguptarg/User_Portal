@@ -9,21 +9,25 @@ portal = Blueprint('portal', __name__)
 @portal.route('/index')
 @portal.route('/home')
 def home():
+    "Render Home Page"
     return render_template('index.html')
 
 
 @portal.route('/signin')
 def signin():
+    "Render Sign In Form"
     return render_template('signin.html')
 
 
 @portal.route('/signup')
 def signup():
+    "Render Sign Up form"
     return render_template('signup.html')
 
 
 @portal.route('/status', methods=['POST'])
 def status():
+    "Display status of current user"
     name = request.form.get('name')
     uname = request.form.get('uname')
     pwd = request.form.get('pwd')
@@ -38,6 +42,7 @@ def status():
 
 @portal.route('/login_status', methods=['POST'])
 def login():
+    "Login user and Administrator to their accounts"
     uname_log = request.form.get('uname')
     pwd_log = request.form.get('pwd')
     try:
@@ -57,10 +62,9 @@ def login():
 
 @portal.route('/admin/<user_name>')
 def view_admin(user_name):
+    "Home page for Administrator"
     user = UserInfo.query.filter_by(uname=user_name).first()
     res = {}
-    #name = res[user_name]['name']
-    #print nam
     name = user.name
     password = user.pwd
     role = user.role
@@ -76,25 +80,12 @@ def view_admin(user_name):
         }
 
     return render_template('admin.html', data=data, res=res)
-    #return redirect(url_for('portal.user_settings', data=data))
-    #return jsonify(res)
 
 
 @portal.route('/user/<user_name>')
 def view_user(user_name):
+    "Home page for User"
     user = UserInfo.query.filter_by(uname=user_name).first()
-    #res = {}
-    '''
-    for user in users:
-        res[user.uname] = {
-            'name': user.name,
-            'password': str(user.pwd),
-            'role': str(user.role),
-            'gender':str(user.gender)
-    }
-    '''
-    #name = res[user_name]['name']
-    #print nam
     name = user.name
     password = user.pwd
     role = user.role
@@ -104,26 +95,27 @@ def view_user(user_name):
 
 @portal.route('/settings/<user_name>')
 def user_settings(user_name):
+    "Render the page to change the information of users"
     user = user_name
+    details = user = UserInfo.query.filter_by(uname=user).first()
+    name = details.name
+    pwd = details.pwd
+    role = details.role
+    gender = details.gender
+    data = {'name':name, 'password':pwd}
     return render_template('settings.html', user=user)
 
 
 @portal.route('/update', methods=['POST'])
 def update_data():
+    "update the information of users into database"
     name_log = request.form.get('name')
     uname_log = request.form.get('uname')
     pwd_log = request.form.get('pwd')
     gender_log = request.form.get('gender')
     role_log = request.form.get('role')
-    #user = UserInfo.query.filter_by(uname)
-    #admin = User.query.filter_by(username='admin').first()
-    #admin.email = 'my_new_email@example.com'
-
     try:
         user = UserInfo.query.filter_by(uname=uname_log).first()
-        #admin = User.query.filter_by(username='admin').first()
-        #admin.email = 'my_new_email@example.com'
-        print user
         user.name = name_log
         user.pwd = pwd_log
         user.gender = gender_log
@@ -132,5 +124,4 @@ def update_data():
         message = 'Your record has been updated in our database.'
     except Exception, e:
         message = 'We are facing some difficulties in updating your data. Check your username.'
-        #message = e
     return render_template('status.html', message=message)

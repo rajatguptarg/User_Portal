@@ -13,6 +13,7 @@
             </div>
             <div class="col-md-7"><br><br><legend>&nbsp;</legend></div>
             <div class="col-md-2"><br>
+                <button type="button" class="btn btn-primary" onclick="location.href='http://127.0.0.1:5000/signin'">Sign Out</button>
                 <button type="button" class="btn btn-primary" onclick="location.href='http://127.0.0.1:5000/settings/{{ data.user }}'">Change Settings</button><br><br>
             </div>
         </div>
@@ -28,25 +29,30 @@
             <div class="col-md-9"></div>
         </div>
         <p><legend>User Log:</legend></p>
-        <br><br>
-        <table border=1 align="center">
-            <tr>
-                <th>Name</th>
-                <th>User Name</th>
-                <th>Password</th>
-                <th>Gender</th>
-                <th>Role</th>
-            </tr>
-            {% for user in res.items() %}
-            <tr>
-                <td>{{ user[1]['name'] }}</td>
-                <td>{{ user[0] }}</td>
-                <td>{{ user[1]['password'] }}</td>
-                <td>{{ user[1]['gender'] }}</td>
-                <td>{{ user[1]['role'] }}</td>
-            </tr>
-            {% endfor %}
-            <br>
-        </table>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <table class="table table-bordered" align="center">
+                    <tr class="active">
+                        <th class="info">Name</th>
+                        <th class="info" class="info" class="info" class="info">User Name</th>
+                        <th class="info" class="info" class="info">Password</th>
+                        <th class="info" class="info">Gender</th>
+                        <th class="info">Role</th>
+                    </tr>
+                    {% for user in res.items() %}
+                    <tr class="active">
+                        <td class="active">{{ user[1]['name'] }}</td>
+                        <td class="active">{{ user[0] }}</td>
+                        <td class="active">{{ user[1]['password'] }}</td>
+                        <td class="active">{{ user[1]['gender'] }}</td>
+                        <td class="active">{{ user[1]['role'] }}</td>
+                    </tr>
+                    {% endfor %}
+                    <br>
+                </table>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
     </body>
 </html>
