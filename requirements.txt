@@ -1,0 +1,4 @@
+flask
+flake8
+psycopg2
+Flask-SQLAlchemy
