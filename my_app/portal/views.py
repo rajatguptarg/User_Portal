@@ -1,4 +1,5 @@
-from flask import request, jsonify, Blueprint, Flask, render_template, redirect, url_for, session
+from flask import request, jsonify, Blueprint, Flask, render_template,\
+    redirect, url_for, session
 from my_app.portal.models import UserInfo
 from my_app import db
 
@@ -9,20 +10,26 @@ portal = Blueprint('portal', __name__)
 @portal.route('/index')
 @portal.route('/home')
 def home():
-    "Render Home Page"
+    """
+    Render Home Page
+    """
     return render_template('index.html')
 
 
 @portal.route('/signin')
 def signin():
-    "Render Sign In Form"
-    return render_template('signin.html')
+    """
+    Render Sign In Form
+    """
+    tag = 'sign_in'
+    return render_template('signup.html', tag=tag)
 
 
 @portal.route('/signup')
 def signup():
     "Render Sign Up form"
-    return render_template('signup.html')
+    tag = 'sign_up'
+    return render_template('signup.html', tag=tag)
 
 
 @portal.route('/status', methods=['POST'])
@@ -52,7 +59,7 @@ def login():
         if password == pwd_log and role == 'Administrator':
             return redirect(url_for('portal.view_admin', user_name=uname_log))
         elif password == pwd_log and role != 'Administrator':
-            return redirect(url_for('portal.view_user', user_name=uname_log))
+            return redirect(url_for('portal.view_admin', user_name=uname_log))
         else:
             message = 'Oops, We think you provided wrong Password. Try Again..!!'
     except Exception, e:
@@ -60,6 +67,8 @@ def login():
     return render_template('status.html', message=message)
 
 
+
+@portal.route('/user/<user_name>')
 @portal.route('/admin/<user_name>')
 def view_admin(user_name):
     "Home page for Administrator"
@@ -79,19 +88,8 @@ def view_admin(user_name):
             'gender':str(one_user.gender)
         }
 
-    return render_template('admin.html', data=data, res=res)
+    return render_template('admin.html', data=data, res=res, role=role)
 
-
-@portal.route('/user/<user_name>')
-def view_user(user_name):
-    "Home page for User"
-    user = UserInfo.query.filter_by(uname=user_name).first()
-    name = user.name
-    password = user.pwd
-    role = user.role
-    gender = user.gender
-    data = {'user':user_name, 'name':name, 'password':password, 'role':role, 'gender':gender}
-    return render_template('user.html', data=data)
 
 @portal.route('/settings/<user_name>')
 def user_settings(user_name):

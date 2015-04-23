@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <title>
-            Admin Console
+            Console
         </title>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
     </head>
@@ -28,6 +28,7 @@
             </div>
             <div class="col-md-9"></div>
         </div>
+        {% if role == 'Administrator' %}
         <p><legend>User Log:</legend></p>
         <div class="row">
             <div class="col-md-3"></div>
@@ -54,5 +55,6 @@
             </div>
             <div class="col-md-3"></div>
         </div>
+        {% endif %}
     </body>
 </html>

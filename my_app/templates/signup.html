@@ -2,27 +2,41 @@
 <html lang="en">
     <head>
         <title>
-            Openlabs SignUp
+            {% if tag == 'sign_up' %}
+              Sign Up
+            {% else %}
+              Sign In
+            {% endif %}
         </title>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body align=center>
         <div class="row">
             <div class="col-md-4"></div>
-            <div class="col-md-4"><legend><h1><strong>OPENLABS</strong> Sign Up</h1></legend></div>
+            {% if tag == 'sign_up' %}
+              <div class="col-md-4"><legend><h1><strong>OPENLABS</strong> Sign Up</h1></legend></div>
+            {% else %}
+              <div class="col-md-4"><legend><h1><strong>OPENLABS</strong> Sign In</h1></legend></div>
+            {% endif %}
             <div class="col-md-4"></div>
         </div>
         <br>
         <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
-                <form class="form-horizontal" action="http://127.0.0.1:5000/status" method="post">
+                {% if tag == 'sign_up' %}
+                  <form class="form-horizontal" action="http://127.0.0.1:5000/status" method="post">
+                {% else %}
+                   <form class="form-horizontal" action="http://127.0.0.1:5000/login_status" method="post">
+                {% endif %}
+                {% if tag == 'sign_up' %}
                     <div class="form-group">
                         <label class="control-label col-xs-3" for="name">NAME</label>
                         <div class="col-xs-7">
                             <input type="text" class="form-control" name="name" placeholder="Enter your Name">
                         </div>
                     </div>
+                {% endif %}
                     <div class="form-group">
                         <label class="control-label col-xs-3" for="uname">USER NAME</label>
                         <div class="col-xs-7">
@@ -35,6 +49,7 @@
                             <input type="password" class="form-control" name="pwd" placeholder="Enter your password">
                         </div>
                     </div>
+                 {% if tag == 'sign_up' %}
                     <div class="form-group">
                         <label class="control-label col-xs-3">GENDER</label>
                         <div class="col-xs-2">
@@ -64,6 +79,8 @@
                             </select>
                         </div>
                     </div>
+                 {% endif %}
+
                     <div class="form-group">
                         <div class="col-xs-offset-4 col-xs-8">
                             <input type="submit" class="btn btn-success" value="Submit">
