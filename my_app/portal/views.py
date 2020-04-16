@@ -62,7 +62,7 @@ def status():
 
 
 @portal.route('/login_status', methods=['POST'])
-def login():
+def login_status():
     "Login user and Administrator to their accounts"
     uname_log = request.form.get('uname')
     pwd_log = request.form.get('pwd')

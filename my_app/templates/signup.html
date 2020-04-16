@@ -25,9 +25,9 @@
             <div class="col-md-4"></div>
             <div class="col-md-4">
                 {% if tag == 'sign_up' %}
-                  <form class="form-horizontal" action="http://127.0.0.1:5000/status" method="post">
+                  <form class="form-horizontal" action="{{ url_for('portal.status') }}" method="post">
                 {% else %}
-                   <form class="form-horizontal" action="http://127.0.0.1:5000/login_status" method="post">
+                   <form class="form-horizontal" action="{{ url_for('portal.login_status') }}" method="post">
                 {% endif %}
                 {% if tag == 'sign_up' %}
                     <div class="form-group">
