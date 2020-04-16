@@ -2,6 +2,7 @@ from flask import request, jsonify, Blueprint, Flask, render_template,\
     redirect, url_for, session
 from my_app.portal.models import UserInfo
 from my_app import db
+from flask import jsonify
 
 
 portal = Blueprint('portal', __name__)
@@ -23,6 +24,19 @@ def signin():
     """
     tag = 'sign_in'
     return render_template('signup.html', tag=tag)
+
+
+@portal.route('/health')
+def health():
+    """
+    Return health
+    """
+    tag = 'health'
+    data = {
+        "status": "up",
+        "db": "up"
+    }
+    return jsonify(data)
 
 
 @portal.route('/signup')
@@ -62,7 +76,7 @@ def login():
             return redirect(url_for('portal.view_admin', user_name=uname_log))
         else:
             message = 'Oops, We think you provided wrong Password. Try Again..!!'
-    except Exception, e:
+    except Exception as e:
         message = 'Oops, We think you provided wrong Username. Try Again..!!'
     return render_template('status.html', message=message)
 
@@ -120,6 +134,6 @@ def update_data():
         user.role = role_log
         db.session.commit()
         message = 'Your record has been updated in our database.'
-    except Exception, e:
+    except Exception as e:
         message = 'We are facing some difficulties in updating your data. Check your username.'
     return render_template('status.html', message=message)
